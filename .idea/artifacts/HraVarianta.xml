@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="HraVarianta">
+    <output-path>$PROJECT_DIR$/out/artifacts/HraVarianta</output-path>
+    <root id="archive" name="HraVarianta.jar">
+      <element id="module-output" name="HraVarianta" />
+      <element id="file-copy" path="$PROJECT_DIR$/res/plugin.yml" />
+    </root>
+  </artifact>
+</component>

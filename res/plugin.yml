@@ -1,0 +1,8 @@
+name: Hra
+version: 1.0
+api-version: 1.13
+
+main: mainHra.MainHra
+commands:
+  Duch:
+    description: Vytvori teleportera pro vybavu ducha
