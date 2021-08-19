@@ -2,13 +2,27 @@ package teleporteri;
 
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 
-public class Ohnivak {
-    public void vytvorOhnivakkit(World svet, Location misto) {
-        var ohnivakKit = (Villager) svet.spawnEntity(misto, EntityType.VILLAGER);
-        ohnivakKit.setCustomName("Ohnivak");
+public class Ohnivak implements CommandExecutor {
+
+    @Override
+    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
+        if (!(commandSender instanceof Player)) return false;
+        Player player = (Player) commandSender;
+        vytvorOhnivaka(player.getWorld(), player.getLocation());
+        return true;
+    }
+
+
+    public void vytvorOhnivaka(World svet, Location misto) {
+        var ohnivak = (Villager) svet.spawnEntity(misto, EntityType.VILLAGER);
+        ohnivak.setCustomName(Teleporteri.OHNIVAK.getJmeno());
     }
 
 }
