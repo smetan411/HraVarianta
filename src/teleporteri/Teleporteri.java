@@ -12,4 +12,6 @@ public enum Teleporteri {
     public String getJmeno() {
         return jmeno;
     }
+
+
 }

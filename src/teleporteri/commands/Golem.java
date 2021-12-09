@@ -1,4 +1,4 @@
-package teleporteri;
+package teleporteri.commands;
 
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -8,18 +8,21 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
+import teleporteri.Teleporteri;
 
-public class Vidlak implements CommandExecutor {
+public class Golem implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (!(commandSender instanceof Player)) return false;
         Player player = (Player) commandSender;
-        vytvorVidlaka(player.getWorld(), player.getLocation());
+        vytvorGolema(player.getWorld(), player.getLocation());
         return true;
     }
-    public void vytvorVidlaka(World svet, Location misto) {
-        var vidlak = (Villager) svet.spawnEntity(misto, EntityType.VILLAGER);
-        vidlak.setCustomName(Teleporteri.VIDLAK.getJmeno());
+
+    public void vytvorGolema(World svet, Location misto) {
+        var golem = (Villager) svet.spawnEntity(misto, EntityType.VILLAGER);
+        golem.setCustomName(Teleporteri.GOLEM.getJmeno());
+        golem.setAI(false);
     }
 }

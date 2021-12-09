@@ -2,7 +2,8 @@ package mainHra;
 
 import listenery.*;
 import org.bukkit.plugin.java.JavaPlugin;
-import teleporteri.*;
+import teleporteri.commands.*;
+import teleporteri.listenery.*;
 
 public class MainHra extends JavaPlugin {
 
@@ -15,12 +16,13 @@ public class MainHra extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new LucistnikListener(), this);
         getServer().getPluginManager().registerEvents(new DuchListener(), this);
         getServer().getPluginManager().registerEvents(new SmrtHrace(), this);
+        getServer().getPluginManager().registerEvents(new NesmrtelnostTeleporteru(), this);
 
         //commands
-        getCommand("Duch").setExecutor(new Duch());
-        getCommand("Golem").setExecutor(new Golem());
-        getCommand("Lucistnik").setExecutor(new Lucistnik());
-        getCommand("Ohnivak").setExecutor(new Ohnivak());
-        getCommand("Vidlak").setExecutor(new Vidlak());
+        getCommand("_Duch").setExecutor(new Duch());
+        getCommand("_Golem").setExecutor(new Golem());
+        getCommand("_Lucistnik").setExecutor(new Lucistnik());
+        getCommand("_Ohnivak").setExecutor(new Ohnivak());
+        getCommand("_Vidlak").setExecutor(new Vidlak());
     }
 }

@@ -1,4 +1,4 @@
-package listenery;
+package teleporteri.listenery;
 
 import mainHra.MistoAreny;
 import teleporteri.Teleporteri;

@@ -4,9 +4,9 @@ api-version: 1.13
 
 main: mainHra.MainHra
 commands:
-  Duch:
-  Golem:
-  Lucistnik:
-  Ohnivak:
-  Vidlak:
+  _Duch:
+  _Golem:
+  _Lucistnik:
+  _Ohnivak:
+  _Vidlak:
     description: Vytvori teleportera pro vybavu ducha, golema, lucistnika, ohnivaka, vidlaka

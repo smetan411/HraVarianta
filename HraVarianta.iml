@@ -9,5 +9,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="ServerHra 1.16" level="application" />
+    <orderEntry type="library" name="Server Mikrobattle 1.16" level="application" />
   </component>
 </module>

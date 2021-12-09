@@ -1,8 +1,8 @@
-package listenery;
+package teleporteri.listenery;
 
 import mainHra.MistoAreny;
 import teleporteri.Teleporteri;
-import vybava.VybavaDuch;
+import vybava.VybavaOhnivak;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -11,7 +11,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class DuchListener implements Listener {
+public class OhnivakListener implements Listener {
 
     @EventHandler
     public void uderDoTeleportera(EntityDamageByEntityEvent event) {
@@ -22,16 +22,24 @@ public class DuchListener implements Listener {
         var vesnican = event.getEntity();
         var jmenoVesnicana = vesnican.getCustomName();
 
-        if (Teleporteri.DUCH.getJmeno().equals(jmenoVesnicana)) {
+        if (Teleporteri.OHNIVAK.getJmeno().equals(jmenoVesnicana)) {
+            var vybavaOhnivak = new VybavaOhnivak();
             hrac.teleport(mistoAreny.get());
             hrac.sendMessage("Byl jsi úspěšně připojen do hry.");
             hrac.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 999999999, 0, true, false, false));
-            hrac.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 999999999, 0, true, false, false));
             hrac.getInventory().clear();
-            hrac.getInventory().addItem(VybavaDuch.vyrobMec());
-            hrac.getInventory().addItem(VybavaDuch.vyrobSekeru());
-            hrac.getInventory().addItem(VybavaDuch.vyrobJabka());
-            hrac.getInventory().addItem(VybavaDuch.vyrobEnderPerlu());
+            hrac.getInventory().setBoots(vybavaOhnivak.vyrobOhnivakBoty());
+            hrac.getInventory().setHelmet(vybavaOhnivak.vyrobOhnivakHelma());
+            hrac.getInventory().setLeggings(vybavaOhnivak.vyrobOhnivakKalhoty());
+            hrac.getInventory().setChestplate(vybavaOhnivak.vyrobOhnivakBrneni());
+            hrac.getInventory().addItem(vybavaOhnivak.vyrobOhnivakMec());
+            hrac.getInventory().addItem(vybavaOhnivak.vyrobSekeru());
+            hrac.getInventory().addItem(vybavaOhnivak.vyrobLuk());
+            hrac.getInventory().addItem(vybavaOhnivak.vyrobSip());
+            hrac.getInventory().addItem(vybavaOhnivak.vyrobEnderPerlu());
+            hrac.getInventory().addItem(vybavaOhnivak.vyrobJabka());
+            hrac.getInventory().setItemInOffHand(vybavaOhnivak.vyrobOhnivakStit());
+
             if (vesnican instanceof LivingEntity) {
                 LivingEntity zijciVesnican = (LivingEntity) vesnican;
                 zijciVesnican.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 10, 5));
@@ -40,5 +48,4 @@ public class DuchListener implements Listener {
         }
     }
 }
-
 

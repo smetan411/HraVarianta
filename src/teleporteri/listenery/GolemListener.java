@@ -1,6 +1,8 @@
-package listenery;
+package teleporteri.listenery;
 
 import mainHra.MistoAreny;
+import teleporteri.Teleporteri;
+import vybava.VybavaGolem;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -8,13 +10,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import teleporteri.Teleporteri;
-import vybava.VybavaVidlak;
 
-public class VidlakListener implements Listener {
+public class GolemListener implements Listener {
 
     @EventHandler
-    public void uderVesnicana(EntityDamageByEntityEvent event) {
+    public void uderDoTeleportera(EntityDamageByEntityEvent event) {
 
         if (!(event.getDamager() instanceof Player)) return;
         var hrac = (Player) event.getDamager();
@@ -22,23 +22,21 @@ public class VidlakListener implements Listener {
         var vesnican = event.getEntity();
         var jmenoVesnicana = vesnican.getCustomName();
 
-        if (Teleporteri.VIDLAK.getJmeno().equals(jmenoVesnicana)) {
-            var vybavaVidlak = new VybavaVidlak();
+        if (Teleporteri.GOLEM.getJmeno().equals(jmenoVesnicana)) {
+            var vybavaGolem = new VybavaGolem();
             hrac.teleport(mistoAreny.get());
             hrac.sendMessage("Byl jsi úspěšně připojen do hry.");
             hrac.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 999999999, 0, true, false, false));
             hrac.getInventory().clear();
-            hrac.getInventory().setBoots(vybavaVidlak.vyrobBoty());
-            hrac.getInventory().setHelmet(vybavaVidlak.vyrobHelmu());
-            hrac.getInventory().setLeggings(vybavaVidlak.vyrobLeginy());
-            hrac.getInventory().setChestplate(vybavaVidlak.vyrobBrneni());
-            hrac.getInventory().addItem(vybavaVidlak.vyrobMec());
-            hrac.getInventory().addItem(vybavaVidlak.vyrobSekeru());
-            hrac.getInventory().addItem(vybavaVidlak.vyrobJabka());
-            hrac.getInventory().addItem(vybavaVidlak.vyrobLuk());
-            hrac.getInventory().addItem(vybavaVidlak.vyrobEnderPerlu());
-            hrac.getInventory().addItem(vybavaVidlak.vyrobSip());
-            hrac.getInventory().setItemInOffHand(vybavaVidlak.vyrobStit());
+            hrac.getInventory().setBoots(vybavaGolem.vyrobGolemBoty());
+            hrac.getInventory().setHelmet(vybavaGolem.vyrobGolemDyne());
+            hrac.getInventory().setLeggings(vybavaGolem.vyrobGolemKalhoty());
+            hrac.getInventory().setChestplate(vybavaGolem.vyrobGolemBrneni());
+            hrac.getInventory().addItem(vybavaGolem.vyrobGolemMec());
+            hrac.getInventory().addItem(vybavaGolem.vyrobEnderPerlu());
+            hrac.getInventory().addItem(vybavaGolem.vyrobJabka());
+            hrac.getInventory().addItem(vybavaGolem.vyrobSekeru());
+            hrac.getInventory().setItemInOffHand(vybavaGolem.vyrobGolemStit());
 
             if (vesnican instanceof LivingEntity) {
                 LivingEntity zijciVesnican = (LivingEntity) vesnican;
@@ -48,5 +46,4 @@ public class VidlakListener implements Listener {
         }
     }
 }
-
 

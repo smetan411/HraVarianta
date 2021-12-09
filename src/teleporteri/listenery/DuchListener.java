@@ -1,8 +1,8 @@
-package listenery;
+package teleporteri.listenery;
 
 import mainHra.MistoAreny;
 import teleporteri.Teleporteri;
-import vybava.VybavaGolem;
+import vybava.VybavaDuch;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -11,7 +11,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class GolemListener implements Listener {
+public class DuchListener implements Listener {
 
     @EventHandler
     public void uderDoTeleportera(EntityDamageByEntityEvent event) {
@@ -22,22 +22,16 @@ public class GolemListener implements Listener {
         var vesnican = event.getEntity();
         var jmenoVesnicana = vesnican.getCustomName();
 
-        if (Teleporteri.GOLEM.getJmeno().equals(jmenoVesnicana)) {
-            var vybavaGolem = new VybavaGolem();
+        if (Teleporteri.DUCH.getJmeno().equals(jmenoVesnicana)) {
             hrac.teleport(mistoAreny.get());
             hrac.sendMessage("Byl jsi úspěšně připojen do hry.");
             hrac.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 999999999, 0, true, false, false));
+            hrac.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 999999999, 0, true, false, false));
             hrac.getInventory().clear();
-            hrac.getInventory().setBoots(vybavaGolem.vyrobGolemBoty());
-            hrac.getInventory().setHelmet(vybavaGolem.vyrobGolemDyne());
-            hrac.getInventory().setLeggings(vybavaGolem.vyrobGolemKalhoty());
-            hrac.getInventory().setChestplate(vybavaGolem.vyrobGolemBrneni());
-            hrac.getInventory().addItem(vybavaGolem.vyrobGolemMec());
-            hrac.getInventory().addItem(vybavaGolem.vyrobEnderPerlu());
-            hrac.getInventory().addItem(vybavaGolem.vyrobJabka());
-            hrac.getInventory().addItem(vybavaGolem.vyrobSekeru());
-            hrac.getInventory().setItemInOffHand(vybavaGolem.vyrobGolemStit());
-
+            hrac.getInventory().addItem(VybavaDuch.vyrobMec());
+            hrac.getInventory().addItem(VybavaDuch.vyrobSekeru());
+            hrac.getInventory().addItem(VybavaDuch.vyrobJabka());
+            hrac.getInventory().addItem(VybavaDuch.vyrobEnderPerlu());
             if (vesnican instanceof LivingEntity) {
                 LivingEntity zijciVesnican = (LivingEntity) vesnican;
                 zijciVesnican.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 10, 5));
@@ -46,4 +40,5 @@ public class GolemListener implements Listener {
         }
     }
 }
+
 
